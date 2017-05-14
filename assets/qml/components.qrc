@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Components/functional/DrawerMenu.qml</file>
+        <file>Components/functional/Header.qml</file>
+        <file>Components/functional/MenuButton.qml</file>
+        <file>Components/functional/Screen.qml</file>
+        <file>Components/visual/Hamburger.qml</file>
+        <file>Components/visual/PressEffect.qml</file>
+        <file>Components/visual/SideShadow.qml</file>
+    </qresource>
+</RCC>

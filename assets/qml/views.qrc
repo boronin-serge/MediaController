@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Views/StartPage.qml</file>
+        <file>Views/Stat.qml</file>
+        <file>Views/Tests.qml</file>
+        <file>Views/View.qml</file>
+    </qresource>
+</RCC>
