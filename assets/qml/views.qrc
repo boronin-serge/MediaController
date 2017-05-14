@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>Views/StartPage.qml</file>
-        <file>Views/Stat.qml</file>
-        <file>Views/Tests.qml</file>
-        <file>Views/View.qml</file>
+        <file>views/StartPage.qml</file>
+        <file>views/Stat.qml</file>
+        <file>views/Tests.qml</file>
+        <file>views/View.qml</file>
     </qresource>
 </RCC>

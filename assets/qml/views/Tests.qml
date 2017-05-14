@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "../Components/functional"
+import "../components/functional"
 //import "../../images"
 
 Screen {

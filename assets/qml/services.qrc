@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>controllers/InternetController.qml</file>
+        <file>InternetService.qml</file>
     </qresource>
 </RCC>

@@ -1,11 +1,15 @@
 import QtQuick 2.7
-import "Components"
-import "Views"
-import "Defs"
+
+import "components"
+import "controllers"
+import "views"
+import "defs"
 
 RootForm {
     id: root
     property Defs defs: Defs {}
+    property InternetService internetService: InternetService {}
+    property InternetController internetController: InternetController {}
     property real ratio: Math.min(root.width / 480, root.height / 640)
 
     property Navigator navigator: Navigator{
