@@ -4,5 +4,7 @@
         <file>views/Stat.qml</file>
         <file>views/Tests.qml</file>
         <file>views/View.qml</file>
+        <file>views/Finder.qml</file>
+        <file>views/finding/FinderForm.qml</file>
     </qresource>
 </RCC>

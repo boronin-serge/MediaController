@@ -1,8 +1,9 @@
-QT += qml quick websockets
+QT += qml quick websockets network
 
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    services/internet/broadcaster.cpp
 
 RESOURCES += \
     assets/js.qrc \
@@ -35,4 +36,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    services/internet/broadcaster.h
 

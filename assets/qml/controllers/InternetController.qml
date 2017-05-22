@@ -3,6 +3,10 @@ import QtQuick 2.0
 Item {
     id: controller
 
+    function find() {
+        internetService.find()
+    }
+
     function sendRequest(data, success) {
         if (data && data != "") {
             console.log(internetService.socket.active)

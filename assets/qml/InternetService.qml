@@ -1,10 +1,12 @@
 import QtQuick 2.0
 import QtWebSockets 1.1
+import Internet 1.0
 
 Item {
     id: service
     property alias socket: socket
     signal received
+
 
     WebSocket {
         id: socket
@@ -25,6 +27,10 @@ Item {
         active: false
     }
 
+    function find() {
+        broadcaster.send("sended message", "sometype")
+        broadcaster.bind(45454)
+    }
 
     function request (data) {
         socket.sendTextMessage(data)
