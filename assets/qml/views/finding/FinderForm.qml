@@ -17,7 +17,14 @@ Screen {
         anchors {
             centerIn: parent
         }
+        width: 100
+        height: 100
 
+        background: Rectangle {
+            anchors.fill: parent
+            radius: 5
+            color: "white"
+        }
         PressEffect {
             id: findPressEffect
             width: 50

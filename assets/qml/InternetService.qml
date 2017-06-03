@@ -5,15 +5,15 @@ import Internet 1.0
 Item {
     id: service
     property alias socket: socket
-    signal received
-
+    signal received(string message)
+    signal finded
 
     WebSocket {
         id: socket
         url: "ws://echo.websocket.org"
         onTextMessageReceived: {
             console.debug("Received message: " + message)
-            received()
+            received(message)
         }
         onStatusChanged: {
             if (socket.status == WebSocket.Error) {
@@ -29,7 +29,6 @@ Item {
 
     function find() {
         broadcaster.send("sended message", "sometype")
-        broadcaster.bind(45454)
     }
 
     function request (data) {
@@ -47,6 +46,13 @@ Item {
     function setUrl(url) {
         if (url && url != "") {
             socket.url = url
+        }
+    }
+
+    Connections {
+        target: broadcaster
+        onFinded: {
+            finded()
         }
     }
 }

@@ -1,19 +1,38 @@
 #include <QtNetwork>
 #include "broadcaster.h"
+#include <QNetworkInterface>
 
 Broadcaster::Broadcaster(QObject *parent) : QObject(parent)
 {
       socket = new QUdpSocket(this);
+      connect(socket, SIGNAL(readyRead()), SLOT(read()));
+      _port = 45454;
+      socket->bind(QHostAddress::Any, _port);
+      qDebug() << "binded";
 }
 
-void Broadcaster::bind(int port) {
-    _port = port;
-    //socket->bind(QHostAddress::Any, _port);
-    connect(socket, SIGNAL(readyRead()), SLOT(read()));
-    qDebug() << "binded";
+
+QString Broadcaster::localIP()
+{
+  QString locIP;
+  QList<QHostAddress> addr = QNetworkInterface::allAddresses();
+  locIP = addr.first().toString();
+  return locIP;
+}
+
+
+QString Broadcaster::deviceIP()
+{
+    if (deviceAdress == nullptr) {
+        return "null";
+    }
+
+    QString ip = deviceAdress->toString().right(13);
+    return ip;
 }
 
 void Broadcaster::send(QString str, qint8 type) {
+  qDebug() << "my ip: " << localIP();
   QByteArray data;
   QDataStream out(&data, QIODevice::WriteOnly);
   out << qint64(0);
@@ -25,21 +44,29 @@ void Broadcaster::send(QString str, qint8 type) {
 }
 
 void Broadcaster::read() {
-//  QByteArray datagram;
-//  datagram.resize(socket->pendingDatagramSize());
-//  QHostAddress *address = new QHostAddress();
-//  socket->readDatagram(datagram.data(), datagram.size(), address);
+  QByteArray datagram;
+  datagram.resize(socket->pendingDatagramSize());
+  QHostAddress *address = new QHostAddress();
+  socket->readDatagram(datagram.data(), datagram.size(), address);
 
-//  QDataStream in(&datagram, QIODevice::ReadOnly);
+  QDataStream in(&datagram, QIODevice::ReadOnly);
 
-//  qint64 size = -1;
-//  if(in.device()->size() > sizeof(qint64)) {
-//    in >> size;
-//  } else return;
-//  if (in.device()->size() - sizeof(qint64) < size) return;
+  qint64 size = -1;
+  if(in.device()->size() > sizeof(qint64)) {
+    in >> size;
+  } else return;
+  if (in.device()->size() - sizeof(qint64) < size) return;
 
-//  qint8 type = 0;
-//  in >> type;
+  qint8 type = 0;
+  in >> type;
+  QString str;
+  in >> str;
+  qDebug() << "readed: " << str << ": " << address->toString();
+
+  if (address != nullptr) {
+      deviceAdress = address;
+      emit finded();
+  }
 
 //  if (type == USUAL_MESSAGE) {
 //    QString str;

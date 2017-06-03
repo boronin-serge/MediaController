@@ -8,4 +8,11 @@ FinderForm {
         console.debug("click")
         internetController.find();
     }
+
+    Connections {
+        target: internetService
+        onFinded: {
+            navigator.select("startPage")
+        }
+    }
 }

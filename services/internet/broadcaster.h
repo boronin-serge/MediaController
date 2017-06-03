@@ -14,14 +14,18 @@ class Broadcaster : public QObject
 
         QUdpSocket *socket;
 
+    signals:
+        void finded();
 
     public slots:
-        void bind(int port);
         void send(QString str, qint8 type);
         void read();
+        QString localIP();
+        QString deviceIP();
 
     private:
         int _port;
+        QHostAddress* deviceAdress;
 };
 
 #endif // BROADCASTER_H
